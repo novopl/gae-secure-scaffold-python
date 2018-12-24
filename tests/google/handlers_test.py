@@ -94,7 +94,7 @@ class HandlersTest(unittest2.TestCase):
 
       self.fail('should not be able to override dispatch')
     except handlers.SecurityError, e:
-      self.assertTrue(e.message.find('override restricted') != -1)
+      self.assertTrue(str(e).find('override restricted') != -1)
 
   def testAuthenticatedHandlerRequiresUser(self):
 
@@ -154,7 +154,7 @@ class HandlersTest(unittest2.TestCase):
     except exceptions.AssertionError, e:
       # webapp2 wraps the raised SecurityError during dispatch with an
       # exceptions.AssertionError.
-      self.assertTrue(e.message.find('X-AppEngine-Cron') != -1)
+      self.assertTrue(str(e).find('X-AppEngine-Cron') != -1)
 
   def testCronSucceedsWithXAppEngineCron(self):
     headers = [('X-AppEngine-Cron', 'true')]
@@ -169,7 +169,7 @@ class HandlersTest(unittest2.TestCase):
     except exceptions.AssertionError, e:
       # webapp2 wraps the raised SecurityError during dispatch with an
       # exceptions.AssertionError.
-      self.assertTrue(e.message.find('X-AppEngine-QueueName') != -1)
+      self.assertTrue(str(e).find('X-AppEngine-QueueName') != -1)
 
   def testTaskSucceedsWithXAppEngineQueueName(self):
     headers = [('X-AppEngine-QueueName', 'default')]

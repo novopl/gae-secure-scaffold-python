@@ -1,18 +1,6 @@
 ###########################################################################
 # DO NOT MODIFY THIS FILE WITHOUT UNDERSTANDING THE SECURITY IMPLICATIONS #
 ###########################################################################
-
-# The "application" parameter is automatically set based on the below rules:
-# For util.sh: the argument to '-p' is used
-# For Grunt users: the 'appid' value in config.json.  It may also be
-#                  overriden by passing an '--appid=' parameter to grunt
-# You do not need to modify it here.
-application: __APPLICATION__
-
-# The version is automatically generated based on the current git hash.
-# If there are uncommitted changes, a '-dev' suffix will be added. You do
-# not need to modify it here.
-version: __VERSION__
 runtime: python27
 api_version: 1
 threadsafe: true

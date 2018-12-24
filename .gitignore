@@ -1,6 +1,49 @@
-out/
-node_modules/
-.DS_Store
-*.pyc
-*.swp
+##############
+# Temp files #
+##############
 *~
+*sw[po]
+cache.sqlite
+.cache
+.pytest_cache
+
+################
+# Python files #
+################
+*.py[cod]
+__pycache__
+*.egg-info
+
+###################
+# Generated files #
+###################
+/.venv
+node_modules/
+.coverage
+.tox
+.build
+
+##############
+# Data files #
+##############
+data/
+*.db
+*.sqlite
+*.sqlite3
+*.ipynb
+.ipynb_checkpoints
+*.log
+*.zip
+*.tar
+*.gz
+*.bz2
+*.rar
+
+###########################
+# 3rd party configuration #
+###########################
+*.kdev4
+.ropeproject
+.idea
+.directory
+.DS_Store

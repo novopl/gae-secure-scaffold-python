@@ -15,7 +15,7 @@
 
 import unittest2
 
-import models
+from app.base import models
 
 from google.appengine.ext import testbed
 

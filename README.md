@@ -46,3 +46,28 @@ code in a way that facilitates security review.
 Sample implementations can be found in `src/handlers.py`.  These demonstrate
 basic functionality, and should be removed / replaced by code specific to
 your application.
+
+
+## Setting up project
+
+### Setup virtualenv for local packages
+
+All packages required for deployment should live in the `third_party` directory.
+This does not include the packages that are required for development. We do not
+want to deploy them to AppEngine so we use a virtualenv to install them locally:
+
+```bash
+$ virtualenv -p python2 .venv
+$ source .venv/bin/activate
+$ pip install -r requirements.txt
+```
+
+### Running tests
+
+The scaffold uses **py.test** to as a test runner. To run tests use one of the
+following commands
+
+```bash
+$ pytest -c ops/tools/pytest.ini tests          # Run all tests
+$ pytest -c ops/tools/pytest.ini tests/google   # Run tests written by google
+```

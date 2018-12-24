@@ -18,7 +18,7 @@ import pickle
 import unittest2
 import yaml
 
-import api_fixer
+from app.base import api_fixer
 
 
 class BadPickle(object):

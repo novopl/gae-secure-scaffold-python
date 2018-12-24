@@ -17,7 +17,7 @@ import os
 import time
 import unittest2
 
-import xsrf
+from app.base import xsrf
 
 
 class XsrfTest(unittest2.TestCase):

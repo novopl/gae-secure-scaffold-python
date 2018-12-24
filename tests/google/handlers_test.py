@@ -17,8 +17,8 @@ import exceptions
 import unittest2
 import webapp2
 
-import handlers
-import xsrf
+from app.base import handlers
+from app.base import xsrf
 
 from google.appengine.ext import testbed
 

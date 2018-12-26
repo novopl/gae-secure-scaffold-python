@@ -17,8 +17,8 @@ import unittest2
 import webapp2
 import webapp2_extras.routes
 
-from base import handlers
-import main
+from app.base import handlers
+from app import main
 
 
 class MainTest(unittest2.TestCase):

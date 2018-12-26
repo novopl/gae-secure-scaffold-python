@@ -50,6 +50,12 @@ your application.
 
 ## Setting up project
 
+The scaffold is using **peltak** for projects scripts to help out with daily
+repetitive dev tasks. If you do not wish to use peltak, after you clone the
+scaffold just delete `pelconf.yaml` file and remove `peltak==0.24.2` from
+`requirements.txt`.
+
+
 ### Setup virtualenv for local packages
 
 All packages required for deployment should live in the `third_party` directory.
@@ -62,12 +68,33 @@ $ source .venv/bin/activate
 $ pip install -r requirements.txt
 ```
 
+### Enable peltak autocompletion (if using peltak).
+
+You can enable autocompletion for peltak in the current shell with:
+
+```bash
+$ eval "$(_PELTAK_COMPLETE=source peltak)"          # If you're using Bash
+$ eval "$(_PELTAK_COMPLETE=source_zsh peltak)"      # If you're using ZSH
+```
+
+You can auto-enable completion every time you activate the virtualenv with:
+
+```bash
+$ echo 'eval "$(_PELTAK_COMPLETE=source peltak)"' >> .venv/bin/activate
+```
+
+
 ### Running tests
 
 The scaffold uses **py.test** to as a test runner. To run tests use one of the
 following commands
 
 ```bash
-$ pytest -c ops/tools/pytest.ini tests          # Run all tests
-$ pytest -c ops/tools/pytest.ini tests/google   # Run tests written by google
+$ peltak test
+```
+
+### Running code checks
+
+```bash
+$ peltak lint
 ```

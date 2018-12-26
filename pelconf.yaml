@@ -1,0 +1,56 @@
+# peltak configuration file
+# See https://github.com/novopl/peltak for more information.
+pelconf_version: '0'
+
+# General project settings - used by many commands
+src_dir: 'src'
+src_path: 'src/app'
+build_dir: '.build'
+version_file: 'src/app/__init__.py'
+
+# A list of py modules with commands that should be available for the project.
+commands:
+  - peltak.commands.docs
+  - peltak.commands.git
+  - peltak.commands.lint
+  - peltak.commands.test
+  - peltak.commands.version
+  - peltak.extra.changelog
+  - peltak.extra.gitflow
+  - peltak_appengine
+
+# Configure what gets deleted when running `peltak clean`
+clean:
+  exclude:
+    - ".tox"
+    - ".venv"
+
+
+# Configure linting tools and paths
+lint:
+  tools:
+    - pep8
+    - pylint
+  paths:
+    - src/app
+  exclude:
+    - "app/base"
+    - "app/examples"
+    - "app/main*.py"
+    - "app/handlers.py"
+
+
+# Configure how documentation is generated (src files for reference docs, etc).
+docs:
+  reference:
+    - src/app
+
+# Tests configuration
+test:
+  types:
+    default:
+      paths:
+        - tests
+    google:
+      paths:
+        - tests/google

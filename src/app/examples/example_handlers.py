@@ -36,7 +36,7 @@ class JinjaXssHandler(handlers.BaseHandler):
     # demonstration purposes.  DO NOT DUPLICATE THIS IN PRODUCTION CODE.
     self.response.headers['X-XSS-Protection'] = '0'
     self.response.headers['content-security-policy'] = ''
-    self.render('xss.tpl', template)
+    self.render('scaffold_examples/xss.tpl', template)
 
   def post(self):
     self.get()
@@ -56,8 +56,10 @@ class XsrfHandler(handlers.AuthenticatedHandler):
       self.render('debug_only.tpl')
       return
     counter = self._GetCounter()
-    self.render('xsrf.tpl', {'email': self.current_user.email(),
-                             'counter': counter})
+    self.render('scaffold_examples/xsrf.tpl', {
+      'email': self.current_user.email(),
+      'counter': counter
+    })
 
   def post(self):
     if not constants.IS_DEV_APPSERVER:
@@ -84,7 +86,7 @@ class XssiHandler(handlers.BaseHandler):
     if not constants.IS_DEV_APPSERVER:
       self.render('debug_only.tpl')
       return
-    self.render('xssi.tpl')
+    self.render('scaffold_examples/xssi.tpl')
 
   def post(self):
     self.get()
@@ -100,7 +102,7 @@ class CspHandler(handlers.BaseHandler):
     if not constants.IS_DEV_APPSERVER:
       self.render('debug_only.tpl')
       return
-    self.render('csp.tpl')
+    self.render('scaffold_examples/csp.tpl')
 
   def post(self):
     self.get()

@@ -1,4 +1,4 @@
-{% extends "base.tpl" %}
+{% extends "scaffold_examples/base.tpl" %}
 {% block title %}
   Cross-Site Scripting
 {% endblock %}

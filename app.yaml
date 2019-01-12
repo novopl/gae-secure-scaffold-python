@@ -41,11 +41,6 @@ skip_files:
   - ^(.*/)?\..*$
   - ^(.*/)?.*/node_modules/.*$
   - ^(.*/)?.*/env/.*$
-  - app.yaml.base
   - README
-  - util.sh
-  - run_tests.py
-  - .*_test.py
+  - tests/.*
   - js/.*
-  - closure-library/.*
-

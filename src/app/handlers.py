@@ -23,8 +23,8 @@ class RootHandler(handlers.BaseHandler):
     """ Main handler serving the root URL. """
 
     def get(self):
-        """ Just redirect to /static/index.html"""
-        self.redirect('/static/index.html')
+        """ Just redirect to /static/index.html """
+        self.render('scaffold_examples/index.html')
 
 
 class CspHandler(handlers.BaseAjaxHandler):

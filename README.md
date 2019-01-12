@@ -98,3 +98,35 @@ $ peltak test
 ```bash
 $ peltak lint
 ```
+
+
+## Differences between the upstream version
+
+Each change was done in a separate commit so they are easy to track.
+
+### Fixes
+
+- Fix tests that used functionality deprecated in python2.6
+
+### Changes
+
+- Remove frontend code. The decision on how to build the frontend can be made
+  on a per project basis, not in a scaffold shared across all of them.
+- The old build that copied all files to `out/` directory has been deleted in
+  the previous commit. Use `appengine_config.py` to setup the paths and not
+  require that whole copy on build approach.
+- Move all tests provided with the scaffold to `tests/google`
+- Move all templates to `src/templates`
+- Move all app source code to `src/app`
+- Use py.test to run tests.
+- Moved the examples templates to a dedicated `templates/scaffold_examples/`
+  directory
+- Change the abstract method names for authenticated handlers from
+  `DenyAccess`/`XsrfFail` to `deny_access`/`xsrf_fail`. This was done so that
+  linting against PEP8 can be enabled for the project. The scaffold base code
+  has been excluded from linting since it’s too far from being compliant and
+  changing it would introduce too much work during security review).
+- `RootHandler` now renders the examples index.html file instead of redirecting
+  to it. This is just so we can avoid redirects and remove static/ directory
+  from the scaffold (it’s up to the project how it organizes the static files
+  since the frontend is defined entirely by the project)

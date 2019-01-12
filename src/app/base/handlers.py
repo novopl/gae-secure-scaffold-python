@@ -395,12 +395,18 @@ class AuthenticatedHandler(BaseHandler):
     return False
 
   @abc.abstractmethod
-  def DenyAccess(self):
+  def deny_access(self):
     pass
 
   @abc.abstractmethod
-  def XsrfFail(self):
+  def xsrf_fail(self):
     pass
+
+  def DenyAccess(self):
+    return self.deny_access()
+
+  def XsrfFail(self):
+    return self.xsrf_fail()
 
 
 class AuthenticatedAjaxHandler(BaseAjaxHandler):
@@ -439,12 +445,18 @@ class AuthenticatedAjaxHandler(BaseAjaxHandler):
     return False
 
   @abc.abstractmethod
-  def DenyAccess(self):
+  def deny_access(self):
     pass
 
   @abc.abstractmethod
-  def XsrfFail(self):
+  def xsrf_fail(self):
     pass
+
+  def DenyAccess(self):
+    return self.deny_access()
+
+  def XsrfFail(self):
+      return self.xsrf_fail()
 
 
 class AdminHandler(AuthenticatedHandler):

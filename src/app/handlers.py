@@ -11,23 +11,32 @@
 #     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
+""" A starting point for defining project route handlers. """
 import json
 import logging
 
 from base import handlers
 
+
 # Minimal set of handlers to let you display main page with examples
 class RootHandler(handlers.BaseHandler):
+    """ Main handler serving the root URL. """
 
-  def get(self):
-    self.redirect('/static/index.html')
+    def get(self):
+        """ Just redirect to /static/index.html"""
+        self.redirect('/static/index.html')
+
 
 class CspHandler(handlers.BaseAjaxHandler):
+    """ Handle CSP violations. """
 
-  def post(self):
-    try:
-      report = json.loads(self.request.body)
-      logging.warn('CSP Violation: %s' % (json.dumps(report['csp-report'])))
-      self.render_json({})
-    except:
-      self.render_json({'error': 'invalid CSP report'})
+    def post(self):
+        """ Log CSP violations to the console. """
+        try:
+            report = json.loads(self.request.body)
+            logging.warn('CSP Violation: {}'.format(
+                json.dumps(report['csp-report'])
+            ))
+            self.render_json({})
+        except:
+            self.render_json({'error': 'invalid CSP report'})

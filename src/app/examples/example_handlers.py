@@ -41,6 +41,7 @@ class JinjaXssHandler(handlers.BaseHandler):
   def post(self):
     self.get()
 
+
 class XsrfHandler(handlers.AuthenticatedHandler):
 
   def _GetCounter(self):

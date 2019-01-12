@@ -47,7 +47,7 @@ IS_DEV_APPSERVER = _IsDevAppServer()
 
 DEBUG = IS_DEV_APPSERVER
 
-TEMPLATE_DIR = os.path.sep.join([os.path.dirname(__file__), '..', 'templates'])
+TEMPLATE_DIR = os.path.sep.join([os.path.dirname(__file__), '..', '..', 'templates'])
 
 # csp_policy
 DEFAULT_CSP_POLICY = {

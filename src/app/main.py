@@ -27,7 +27,7 @@ from examples import example_handlers
 
 # These should all inherit from base.handlers.BaseHandler
 _UNAUTHENTICATED_ROUTES = [('/', handlers.RootHandler),
-                           ('/examples/jinja',
+                           ('/examples/xss',
                             example_handlers.JinjaXssHandler),
                            ('/examples/csp', example_handlers.CspHandler),
                            ('/examples/xssi', example_handlers.XssiHandler)]
@@ -96,7 +96,7 @@ _TASK_ROUTES = []
 #  there as well.
 
 _CONFIG = {
-    'template': base.constants.CLOSURE,
+    'template': base.constants.JINJA2,
     # Developers are encouraged to build sites that comply with this CSP policy.
     # Changing the first two entries (nonce, strict-dynamic) of the script-src
     # directive may render XSS protection invalid! For more information take a

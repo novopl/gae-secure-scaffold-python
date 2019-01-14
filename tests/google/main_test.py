@@ -18,7 +18,7 @@ import webapp2
 import webapp2_extras.routes
 
 from app.base import handlers
-from app import main
+from app import routes as app_routes
 
 
 class MainTest(unittest2.TestCase):
@@ -45,21 +45,21 @@ class MainTest(unittest2.TestCase):
 
   def testRoutesInheritance(self):
     errors = ''
-    errors += self._VerifyInheritance(main._UNAUTHENTICATED_ROUTES,
+    errors += self._VerifyInheritance(app_routes._UNAUTHENTICATED_ROUTES,
                                       handlers.BaseHandler)
-    errors += self._VerifyInheritance(main._UNAUTHENTICATED_AJAX_ROUTES,
+    errors += self._VerifyInheritance(app_routes._UNAUTHENTICATED_AJAX_ROUTES,
                                       handlers.BaseAjaxHandler)
-    errors += self._VerifyInheritance(main._USER_ROUTES,
+    errors += self._VerifyInheritance(app_routes._USER_ROUTES,
                                       handlers.AuthenticatedHandler)
-    errors += self._VerifyInheritance(main._AJAX_ROUTES,
+    errors += self._VerifyInheritance(app_routes._AJAX_ROUTES,
                                       handlers.AuthenticatedAjaxHandler)
-    errors += self._VerifyInheritance(main._ADMIN_ROUTES,
+    errors += self._VerifyInheritance(app_routes._ADMIN_ROUTES,
                                       handlers.AdminHandler)
-    errors += self._VerifyInheritance(main._ADMIN_AJAX_ROUTES,
+    errors += self._VerifyInheritance(app_routes._ADMIN_AJAX_ROUTES,
                                       handlers.AdminAjaxHandler)
-    errors += self._VerifyInheritance(main._CRON_ROUTES,
+    errors += self._VerifyInheritance(app_routes._CRON_ROUTES,
                                       handlers.BaseCronHandler)
-    errors += self._VerifyInheritance(main._TASK_ROUTES,
+    errors += self._VerifyInheritance(app_routes._TASK_ROUTES,
                                       handlers.BaseTaskHandler)
     if errors:
       self.fail('Some handlers do not inherit from the correct classes:\n' +
@@ -67,8 +67,8 @@ class MainTest(unittest2.TestCase):
 
   def testStrictHandlerMethodRouting(self):
     """Checks that handler functions properly limit applicable HTTP methods."""
-    router = webapp2.Router(main._USER_ROUTES + main._AJAX_ROUTES +
-                            main._ADMIN_ROUTES + main._ADMIN_AJAX_ROUTES)
+    router = webapp2.Router(app_routes._USER_ROUTES + app_routes._AJAX_ROUTES +
+                            app_routes._ADMIN_ROUTES + app_routes._ADMIN_AJAX_ROUTES)
     routes = router.match_routes + router.build_routes.values()
     failed_routes = []
     while routes:

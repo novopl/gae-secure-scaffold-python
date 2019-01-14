@@ -32,10 +32,10 @@ class DummyHandler(handlers.AuthenticatedHandler):
   def post(self):
     self._RawWrite('post_succeeded')
 
-  def DenyAccess(self):
+  def deny_access(self):
     self._RawWrite('access_denied')
 
-  def XsrfFail(self):
+  def xsrf_fail(self):
     self._RawWrite('xsrf_fail')
 
 

@@ -11,19 +11,15 @@
 #     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #     See the License for the specific language governing permissions and
 #     limitations under the License.
-"""Main application entry point."""
+""" Application route mappings. """
 from __future__ import absolute_import
 
-import app.base.api_fixer       # pylint: disable=unused-import
-
-# 3rd party imports
-import webapp2
+# stdlib imports
+import itertools
 
 # local imports
 from app import handlers
-from app.base import constants
 from app.examples import example_handlers
-from .config import CONFIG
 
 
 # These should all inherit from base.handlers.BaseHandler
@@ -45,7 +41,8 @@ _USER_ROUTES = [
 ]
 
 # These should all inherit from base.handlers.AuthenticatedAjaxHandler
-_AJAX_ROUTES = []
+_AJAX_ROUTES = [
+]
 
 # These should all inherit from base.handlers.AdminHandler
 _ADMIN_ROUTES = []
@@ -59,15 +56,14 @@ _CRON_ROUTES = []
 # These should all inherit from base.handlers.BaseTaskHandler
 _TASK_ROUTES = []
 
-
-#################################
-# DO NOT MODIFY BELOW THIS LINE #
-#################################
-
-# pylint: disable=invalid-name
-app = webapp2.WSGIApplication(
-    routes=(_UNAUTHENTICATED_ROUTES + _UNAUTHENTICATED_AJAX_ROUTES +
-            _USER_ROUTES + _AJAX_ROUTES + _ADMIN_ROUTES + _ADMIN_AJAX_ROUTES +
-            _CRON_ROUTES + _TASK_ROUTES),
-    debug=constants.DEBUG,
-    config=CONFIG)
+# Aggregate all the routes into something we can pass directly to our WSGI app
+ROUTES = list(itertools.chain(
+    _UNAUTHENTICATED_ROUTES,
+    _UNAUTHENTICATED_AJAX_ROUTES,
+    _USER_ROUTES,
+    _AJAX_ROUTES,
+    _ADMIN_ROUTES,
+    _ADMIN_AJAX_ROUTES,
+    _CRON_ROUTES,
+    _TASK_ROUTES
+))

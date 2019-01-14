@@ -20,7 +20,7 @@ handlers:
 # how URLs are routed in the webapp2 framework. Do not add additional handlers
 # directly here.
   - url: /.*
-    script: app.main.app
+    script: app.wsgi.app
     secure: always
 
 libraries:

@@ -1,0 +1,6 @@
+.pytest_cache
+*.pyc
+__pycache__
+env
+src/client-*
+

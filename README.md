@@ -130,3 +130,6 @@ Each change was done in a separate commit so they are easy to track.
   to it. This is just so we can avoid redirects and remove static/ directory
   from the scaffold (it’s up to the project how it organizes the static files
   since the frontend is defined entirely by the project)
+- Added docker integration. You can use the provided makefile to run the app
+  with docker (unify dev environments). To get the list of available commands,
+  run `make help`.

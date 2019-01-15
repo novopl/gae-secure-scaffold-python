@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ops/Dockerfile
+    working_dir: /app
+    command: dev_appserver.py /app --host 0.0.0.0
+    volumes:
+      - .:/app
+    ports:
+      - "8080:8080"   # The app
+      - "8001:8001"   # Admin console
+    environment:
+      PYTHONUNBUFFERED: 1
+
+  # TODO: Customize this to your frontend architecture of choice
+  fe:
+    image: node:10-alpine
+    user: node
+    working_dir: /home/node/app
+    volumes:
+      - ./src/client-partner-react:/home/node/app
+    command: sh -c 'npm i && npm start'
+    ports:
+      - "3000:3000"

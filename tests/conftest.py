@@ -4,19 +4,13 @@ from __future__ import absolute_import, unicode_literals
 # stdlib imports
 import sys
 import os
-from os.path import dirname, exists, join, relpath
+import subprocess
+from os.path import dirname, join, normpath, relpath
 
 
 def find_appengine_sdk():
-    sdk_files = [
-        'dev_appserver.py',
-        'appcfg.py',
-        'google',
-        'lib',
-    ]
-    paths = sys.path + os.environ.get('PATH').split(':')
-    is_sdk = lambda path: all(exists(join(path, f)) for f in sdk_files)
-    return next((path for path in paths if is_sdk(path)), None)
+    gcloud_path = subprocess.check_output('which gcloud', shell=True).strip()
+    return normpath(join(gcloud_path, '../../platform/google_appengine'))
 
 
 def setup_appengine_devenv(sdk_path):

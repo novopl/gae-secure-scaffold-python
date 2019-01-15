@@ -21,9 +21,13 @@ commands:
 
 # Configure what gets deleted when running `peltak clean`
 clean:
+  patterns:
+    - "*.pytest_cache"
+    - "*.py[cod]"
+    - "__pycache__"
   exclude:
-    - ".tox"
-    - ".venv"
+    - "env"
+    - "src/client-partner-react"
 
 
 # Configure linting tools and paths

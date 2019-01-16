@@ -70,10 +70,10 @@ class XsrfHandler(handlers.AuthenticatedHandler):
     self.render('xsrf.tpl', {'email': self.current_user.email(),
                              'counter': counter})
 
-  def DenyAccess(self):
+  def deny_access(self):
     self.redirect(users.create_login_url(self.request.path))
 
-  def XsrfFail(self):
+  def xsrf_fail(self):
     counter = self._GetCounter()
     self.render('xsrf.tpl', {'email': self.current_user.email(),
                              'counter': counter,
